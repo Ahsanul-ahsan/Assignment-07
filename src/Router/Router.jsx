@@ -30,9 +30,17 @@ export const router = createBrowserRouter([
        
       },
 
+
     ],
-    
-    errorElement: <ErrorPage></ErrorPage>
+
   
+  },
+
+  {
+    path: "*",
+    Component: ErrorPage
+
   }
+
+
 ]);

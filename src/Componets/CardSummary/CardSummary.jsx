@@ -1,13 +1,28 @@
-import React, { use } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaCheckCircle, FaComments, FaExclamationCircle, FaUserFriends } from 'react-icons/fa';
 import AllCard from '../AllCard/AllCard';
 
-const cardPromise = fetch("/data.json").then(res => res.json())
-
 const CardSummary = () => {
 
-    const card = use(cardPromise)
-   
+    const [card, setCard] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch("/data.json")
+            .then(res => res.json())
+            .then(data => {
+                setCard(data);
+                setLoading(false);
+            });
+    }, []);
+    if (loading) {
+        return (
+            <div className="text-center mt-10 text-green-600 text-3xl font-bold">
+                ⏳ Loading data...
+            </div>
+        );
+    }
 
     return (
         <div className='max-w-11/12 mx-auto '>
@@ -46,11 +61,11 @@ const CardSummary = () => {
             </div>
             <div>
                 <p className='font-bold text-[20px]'>Your Friends</p>
-               <div className='grid md:grid-cols-4 gap-4 mb-5 mt-10'>
-                 {
-                    card.map(cards => <AllCard key={cards.id} cards={cards}></AllCard>)
-                }
-               </div>
+                <div className='grid md:grid-cols-4 gap-4 mb-5 mt-10'>
+                    {
+                        card.map(cards => <AllCard key={cards.id} cards={cards}></AllCard>)
+                    }
+                </div>
             </div>
         </div>
 
