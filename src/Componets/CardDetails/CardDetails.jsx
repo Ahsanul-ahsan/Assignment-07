@@ -5,6 +5,7 @@ import { IoMdText } from 'react-icons/io';
 import { IoCall } from 'react-icons/io5';
 import { Link, useParams } from 'react-router';
 import { TimeLineContext } from '../Context/TimeLineContext';
+import { toast } from 'react-toastify';
 
 const cardPromise = fetch("/data.json").then(res => res.json());
 
@@ -25,6 +26,7 @@ const CardDetails = () => {
             ...expectCard,actionType
         }
         setTimeLine([...timeLine, newTimeLine])
+        toast.success(`${expectCard.name} Successfull ${actionType}`)
 
     }
 

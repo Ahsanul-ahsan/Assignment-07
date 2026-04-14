@@ -46,7 +46,7 @@ const CardSummary = () => {
             </div>
             <div>
                 <p className='font-bold text-[20px]'>Your Friends</p>
-               <div className='grid md:grid-cols-4 gap-4 mb-5 mt-5'>
+               <div className='grid md:grid-cols-4 gap-4 mb-5 mt-10'>
                  {
                     card.map(cards => <AllCard key={cards.id} cards={cards}></AllCard>)
                 }

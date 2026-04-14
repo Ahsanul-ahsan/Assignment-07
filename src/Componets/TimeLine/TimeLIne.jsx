@@ -1,14 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { TimeLineContext } from '../Context/TimeLineContext';
-import { FiClock, FiHome, FiMessageSquare, FiPhone, FiVideo } from 'react-icons/fi';
+import { FiHome, FiMessageSquare, FiPhone, FiVideo } from 'react-icons/fi';
 import { Link } from 'react-router';
 import callImg from "../../assets/call.png"
 import textImg from "../../assets/text.png"
 import videoImg from "../../assets/video.png"
+import { ImFileEmpty } from 'react-icons/im';
 
 
 const TimeLIne = () => {
-    const { timeLine, setTimeLine } = useContext(TimeLineContext)
+    const { timeLine } = useContext(TimeLineContext)
+
+    const [fitter, setFiltter] = useState("all")
+
+    const filterTimeLine = fitter === "all" ? timeLine : timeLine.filter((item) => item.actionType === fitter);
+
+    const today = new Intl.DateTimeFormat('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+    }).format(new Date());
 
 
     return (
@@ -16,19 +27,19 @@ const TimeLIne = () => {
             <h1 className="text-4xl font-bold mb-6 text-slate-800">Timeline</h1>
             <label className="select mb-10">
                 <span className="label">Filter timeline</span>
-                <select>
-                    <option>ALL</option>
-                    <option>Call</option>
-                    <option>Video</option>
-                    <option>Text</option>
+                <select onChange={(e) => setFiltter(e.target.value)}>
+                    <option value="all" >ALL</option>
+                    <option value="call" >Call</option>
+                    <option value="video" >Video</option>
+                    <option value="text" >Text</option>
                 </select>
             </label>
 
             {timeLine.length === 0 ? (
                 <div className="flex flex-col items-center justify-center text-center bg-white shadow rounded-xl p-10">
-                    <FiClock size={60} className="text-gray-400 mb-4" />
+                    <ImFileEmpty size={60} className="text-gray-600 mb-4" />
 
-                    <h2 className="text-2xl font-bold text-slate-700">
+                    <h2 className="text-2xl font-bold text-red-600">
                         No Activity Yet
                     </h2>
 
@@ -37,7 +48,7 @@ const TimeLIne = () => {
                     </p>
 
                     <Link to="/">
-                        <button className="mt-5 flex items-center gap-2 bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800">
+                        <button className="mt-5 flex items-center gap-2 bg-green-500 text-white font-bold px-5 py-2 rounded-lg hover:bg-gray-800">
                             <FiHome />
                             Go Home
                         </button>
@@ -45,7 +56,7 @@ const TimeLIne = () => {
                 </div>
             ) : (
                 <div className="space-y-4">
-                    {timeLine.map((item, index) => (
+                    {filterTimeLine.map((item, index) => (
                         <div
                             key={index}
                             className="bg-white shadow rounded-xl p-5 flex justify-between items-center"
@@ -74,19 +85,19 @@ const TimeLIne = () => {
                             <div className="flex items-center gap-2">
                                 {item.actionType === "call" && (
                                     <span className="flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
-                                        <FiPhone /> {item.next_due_date}
+                                        <FiPhone /> {today}
                                     </span>
                                 )}
 
                                 {item.actionType === "text" && (
                                     <span className="flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
-                                        <FiMessageSquare /> {item.next_due_date}
+                                        <FiMessageSquare /> {today}
                                     </span>
                                 )}
 
                                 {item.actionType === "video" && (
                                     <span className="flex items-center gap-2 bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">
-                                        <FiVideo /> {item.next_due_date}
+                                        <FiVideo /> {today}
                                     </span>
                                 )}
                             </div>

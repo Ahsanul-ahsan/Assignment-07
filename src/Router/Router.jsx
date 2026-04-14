@@ -4,6 +4,7 @@ import TimeLIne from "../Componets/TimeLine/TimeLIne";
 import Status from "../Componets/Status/Status";
 import Home from "../Componets/Home/Home";
 import CardDetails from "../Componets/CardDetails/CardDetails";
+import ErrorPage from "../Componets/ErrorPage/ErrorPage";
 
 
 export const router = createBrowserRouter([
@@ -29,8 +30,9 @@ export const router = createBrowserRouter([
        
       },
 
-    ]
-   
-
+    ],
+    
+    errorElement: <ErrorPage></ErrorPage>
+  
   }
 ]);
