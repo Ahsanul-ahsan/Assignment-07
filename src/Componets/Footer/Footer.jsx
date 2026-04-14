@@ -2,10 +2,11 @@ import React from 'react';
 import inImage from "../../assets/instagram.png"
 import FbImage from "../../assets/facebook.png"
 import twImage from "../../assets/twitter.png"
+import pg from "../../assets/company_logo.png"
 
 const Footer = () => {
     return (
-        <div className='mt-10'>
+        <div className='mt-1'>
             <footer className="bg-[#2d4c3b] text-white py-12 px-6 font-sans">
                 <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
                     <h1 className="text-5xl font-bold mb-4">KeenKeeper</h1>
@@ -25,11 +26,14 @@ const Footer = () => {
                     </div>
                     <div className="w-full pt-8 border-t border-gray-600 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 gap-4">
                         <p>© 2026 KeenKeeper. All rights reserved.</p>
+                        <h2 className='font-bold text-[20px] text-white'> Thanks Programing hero</h2>
+                        <img className='w-12 h-12 -ml-45' src={pg} alt="" />
 
                         <ul className="flex gap-6">
-                            <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
-                            <li><a href="#" className="hover:text-white">Terms of Service</a></li>
-                            <li><a href="#" className="hover:text-white">Cookies</a></li>
+                            <li>Privacy Policy</li>
+                            <li>Terms of Service</li>
+                            <li>Cookies</li>
+                           
                         </ul>
                     </div>
                 </div>
