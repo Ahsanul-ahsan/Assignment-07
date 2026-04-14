@@ -3,6 +3,7 @@ import Layout from "../Layout/Layout";
 import TimeLIne from "../Componets/TimeLine/TimeLIne";
 import Status from "../Componets/Status/Status";
 import Home from "../Componets/Home/Home";
+import CardDetails from "../Componets/CardDetails/CardDetails";
 
 
 export const router = createBrowserRouter([
@@ -21,6 +22,11 @@ export const router = createBrowserRouter([
       {
         path: "/status",
         Component: Status
+      },
+      {
+        path: "/cardDetails/:id",
+        Component: CardDetails,
+       
       },
 
     ]

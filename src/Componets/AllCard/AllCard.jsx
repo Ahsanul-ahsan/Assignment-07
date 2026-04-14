@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const AllCard = ({ cards }) => {
 
-    const { name, days_since_contact, tags, status, picture } = cards;
+    const { name, days_since_contact, tags, status, picture, id } = cards;
 
     return (
-        <div className="bg-white shadow-md rounded-xl p-6 text-center ">
+        <Link to={`/cardDetails/${id}`} className="bg-white shadow-md rounded-xl p-6 text-center ">
             <img
                 src={picture}
                 alt="David Kim"
@@ -37,7 +38,7 @@ const AllCard = ({ cards }) => {
                     {status}
                 </span>
             </div>
-        </div>
+        </Link>
 
 
     );
